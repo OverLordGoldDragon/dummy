@@ -2,7 +2,7 @@
 pycodestyle --max-line-length=89 keras_adamw tests
 
 if [[ "$TF_VERSION" == "1.14.0" ]]; then
-    TESTPATH="tests/test_optimizers.py"
+    TESTPATH="tests/test_optimizers.py";
 fi
 
 nosetests \
