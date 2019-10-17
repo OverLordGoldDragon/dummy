@@ -7,4 +7,4 @@ fi
 
 nosetests \
     --nocapture --with-coverage --cover-erase --cover-html --cover-html-dir=htmlcov --ignore-files="example.py" \
-    --cover-package=keras_adamw --with-doctest TESTPATH
+    --cover-package=keras_adamw --with-doctest tests
