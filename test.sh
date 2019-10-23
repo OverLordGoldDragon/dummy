@@ -3,8 +3,6 @@ pycodestyle --max-line-length=89 keras_adamw tests
 
 if [[ "$TF_KERAS" == "True" ]]; then
     TESTPATH="tests/test_optimizers_v2.py";
-elif [[ "$TF_PYTHON" == "True" ]]; then
-    TESTPATH="tests/test_optimizers_tfpy.py";
 else
 	TESTPATH="tests/test_optimizers.py";
 fi
