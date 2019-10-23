@@ -10,5 +10,5 @@ else
 fi
 
 nosetests \
-    --nocapture --with-coverage --cover-erase --cover-html --cover-html-dir=htmlcov --ignore-files="example.py" \
-    --cover-package=keras_adamw --with-doctest "$TESTPATH"
+    --nocapture --with-coverage --cover-erase --cover-html --cover-html-dir=htmlcov \
+	--ignore-files="example.py", "tests/test_optimizers_tfpy.py" --cover-package=keras_adamw --with-doctest "$TESTPATH"
