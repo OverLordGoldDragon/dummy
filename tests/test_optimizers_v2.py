@@ -51,9 +51,11 @@ class TestOptimizers(TestCase):
 
             for epoch in range(num_epochs):
                 for batch_num in range(num_batches):
-                    self.t_cur_history += [K_eval(self.model.optimizer.t_cur)]
-                    self.eta_history += [K_eval(self.model.optimizer.eta_t)]
+                    self.t_cur_history += [K_eval(self.model.optimizer.t_cur, K)]
+                    self.eta_history += [K_eval(self.model.optimizer.eta_t, K)]
                     self.model.train_on_batch(X[batch_num], Y[batch_num])
+                    self.eta_history += [K_eval(self.model.optimizer.eta_t, K)]
+                    self.eta_history.pop(-(1 + int(tf_eager)))
                 K.set_value(self.model.optimizer.t_cur, 0)
 
             self.assertTrue(self._valid_cosine_annealing(self.eta_history,
@@ -192,8 +194,6 @@ class TestOptimizers(TestCase):
         modelpath = os.path.join(tempfile.gettempdir(), test_name)
         model.save(modelpath)
         del model
-        if tf.__version__[0] == '2':
-            tf.compat.v1.experimental.output_all_intermediates(True)  # bug fix
 
         model = load_model(modelpath, custom_objects={optimizer_name: optimizer})
         loaded_model_preds = model.predict(X[0])

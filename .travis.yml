@@ -5,13 +5,14 @@ python:
   - "3.6"
 env:
   matrix:
-#     - KERAS_VERSION="2.2.5" TF_VERSION="1.13.1"
-#     - KERAS_VERSION="2.2.5" TF_VERSION="1.14.0"
-    - TF_VERSION="1.14.0"
-#     - TF_VERSION="2.0.0"
+    - TF_VERSION="1.14.0" KERAS_VERSION="2.2.5" TF_KERAS="False"
+    - TF_VERSION="1.14.0" KERAS_VERSION="2.2.5" TF_KERAS="True"
+    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_KERAS="False" TF_EAGER="True"
+    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_KERAS="False" TF_EAGER="False"
+    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_KERAS="True"  TF_EAGER="True"
+    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_KERAS="True"  TF_EAGER="False"
+    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_PYTHON="True" TF_EAGER="True"
 
-#     - KERAS_VERSION="2.3.0" TF_VERSION="1.14.0"
-    # - KERAS_VERSION="2.3.0" TF_VERSION="2.0.0"
 notifications:
   email: false
   

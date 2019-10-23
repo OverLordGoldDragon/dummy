@@ -9,7 +9,7 @@ from unittest import TestCase
 
 from . import K
 from . import Input, Dense, GRU, Bidirectional, Embedding
-from . import Model, load_model
+from . import Model
 from . import l2
 from . import maxnorm
 from . import Adam, Nadam, SGD
@@ -43,7 +43,6 @@ class TestOptimizers(TestCase):
                                              total_iterations)
             self.model.compile(optimizer, loss='binary_crossentropy')
             self.assertTrue(self._valid_weight_decays(self.model))
-            self.model._make_train_function()  # else K.eval before train may fail
 
             X, Y = self._make_data(num_batches, *batch_shape)
             self.eta_history = []  # for stop-introspection
@@ -58,7 +57,7 @@ class TestOptimizers(TestCase):
 
             self.assertTrue(self._valid_cosine_annealing(self.eta_history,
                             total_iterations, num_epochs))
-            self._test_save_load(self.model, X, optimizer_name, optimizer)
+            self._test_save_load_weights(self.model, X, optimizer_name, optimizer)
 
             # cleanup
             del self.model, optimizer
@@ -94,7 +93,7 @@ class TestOptimizers(TestCase):
             for batch_num in range(num_batches):
                 self.model.train_on_batch(X[batch_num], Y[batch_num])
 
-            self._test_save_load(self.model, X, optimizer_name, optimizer)
+            self._test_save_load_weights(self.model, X, optimizer_name, optimizer)
 
             # cleanup
             del self.model, optimizer
@@ -183,19 +182,16 @@ class TestOptimizers(TestCase):
         del optimizer_custom, optimizer_control
         reset_seeds(reset_graph_with_backend=K, verbose=0)
 
-    def _test_save_load(self, model, X, optimizer_name, optimizer):
+    def _test_save_load_weights(self, model, X, optimizer_name, optimizer):
         saved_model_preds = model.predict(X[0])
         saved_model_weights = K.batch_get_value(model.trainable_weights)
         saved_optim_weights = K.batch_get_value(model.optimizer.weights)
 
         test_name = 'test__%f{}.h5'.format(np.random.random())
         modelpath = os.path.join(tempfile.gettempdir(), test_name)
-        model.save(modelpath)
-        del model
-        if tf.__version__[0] == '2':
-            tf.compat.v1.experimental.output_all_intermediates(True)  # bug fix
+        model.save_weights(modelpath)
 
-        model = load_model(modelpath, custom_objects={optimizer_name: optimizer})
+        model.load_weights(modelpath)
         loaded_model_preds = model.predict(X[0])
         loaded_model_weights = K.batch_get_value(model.trainable_weights)
         loaded_optim_weights = K.batch_get_value(model.optimizer.weights)
