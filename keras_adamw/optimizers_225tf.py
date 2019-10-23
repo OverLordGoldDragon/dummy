@@ -5,8 +5,8 @@ from tensorflow.python.keras.optimizer_v2 import learning_rate_schedule
 from tensorflow.python.ops import array_ops, control_flow_ops, math_ops, state_ops
 from tensorflow.python.util.tf_export import keras_export
 import tensorflow.keras.backend as K
-from utils_225 import _apply_weight_decays, _compute_eta_t
-from utils_225 import _apply_lr_multiplier, _check_args
+from .utils_225 import _apply_weight_decays, _compute_eta_t
+from .utils_225 import _apply_lr_multiplier, _check_args
 
 
 @keras_export('keras.optimizers.AdamW')
