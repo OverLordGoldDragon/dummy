@@ -7,14 +7,15 @@ env:
   global:
     - TF_PYTHON="False"
     - TF_EAGER="False"
+    - TF_KERAS="False"
   matrix:
-    - TF_VERSION="1.14.0" KERAS_VERSION="2.2.5" TF_KERAS="False"
+    - TF_VERSION="1.14.0" KERAS_VERSION="2.2.5"
     - TF_VERSION="1.14.0" KERAS_VERSION="2.2.5" TF_KERAS="True"
-    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_KERAS="False" TF_EAGER="True"
-    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_KERAS="False" 
+    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_EAGER="True"
+    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0"
     - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_KERAS="True"  TF_EAGER="True"
     - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_KERAS="True"  
-    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0"                  TF_EAGER="True"
+    - TF_VERSION="2.0.0"  KERAS_VERSION="2.3.0" TF_PYTHON="True" TF_EAGER="True"
 
 notifications:
   email: false
