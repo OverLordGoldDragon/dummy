@@ -8,16 +8,16 @@ tf_python = bool(os.environ["TF_PYTHON"] == "True")
 
 if tf_version >= 2:
     if tf_keras:
-        from ..keras_adamw.optimizers_v2 import AdamW, NadamW, SGDW
+        from .keras_adamw.optimizers_v2 import AdamW, NadamW, SGDW
     elif tf_python:
-        from ..keras_adamw.optimizers_tfpy import AdamW, NadamW, SGDW
+        from .keras_adamw.optimizers_tfpy import AdamW, NadamW, SGDW
     else:
-        from ..keras_adamw.optimizers import AdamW, NadamW, SGDW
+        from .keras_adamw.optimizers import AdamW, NadamW, SGDW
 else:
     if tf_keras:
-        from ..keras_adamw.optimizers_225tf import AdamW, NadamW, SGDW
+        from .keras_adamw.optimizers_225tf import AdamW, NadamW, SGDW
     else:
-        from ..keras_adamw.optimizers_225 import AdamW, NadamW, SGDW
+        from .keras_adamw.optimizers_225 import AdamW, NadamW, SGDW
 
 if tf_keras:
     import tensorflow.keras.backend as K
@@ -43,11 +43,11 @@ else:
     from keras.optimizers import Adam, Nadam, SGD
 
 if tf_version >= 2:
-    from ..keras_adamw.utils import get_weight_decays, fill_dict_in_order
-    from ..keras_adamw.utils import reset_seeds, K_eval
+    from .keras_adamw.utils import get_weight_decays, fill_dict_in_order
+    from .keras_adamw.utils import reset_seeds, K_eval
 else:
-    from ..keras_adamw.utils_225 import get_weight_decays, fill_dict_in_order
-    from ..keras_adamw.utils_225 import reset_seeds, K_eval
+    from .keras_adamw.utils_225 import get_weight_decays, fill_dict_in_order
+    from .keras_adamw.utils_225 import reset_seeds, K_eval
 
 
 # ALL TESTS (7 total):
