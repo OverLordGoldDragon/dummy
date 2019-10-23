@@ -1,8 +1,8 @@
 from keras import backend as K
 from keras.legacy import interfaces
 from keras.optimizers import Optimizer
-from adamw_utils import _apply_weight_decays, _compute_eta_t
-from adamw_utils import _apply_lr_multiplier, _check_args
+from utils import _apply_weight_decays, _compute_eta_t
+from utils import _apply_lr_multiplier, _check_args
 
 
 class AdamW(Optimizer):

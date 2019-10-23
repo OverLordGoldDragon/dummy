@@ -2,8 +2,8 @@ from tensorflow.python.framework import ops
 from tensorflow.keras import backend as K
 from tensorflow.python.keras.optimizers import Optimizer
 from tensorflow.python.ops import math_ops, state_ops
-from adamw_utils import _apply_weight_decays, _compute_eta_t
-from adamw_utils import _apply_lr_multiplier, _check_args, K_eval
+from utils import _apply_weight_decays, _compute_eta_t
+from utils import _apply_lr_multiplier, _check_args, K_eval
 
 """tf.python.keras implementations
 
