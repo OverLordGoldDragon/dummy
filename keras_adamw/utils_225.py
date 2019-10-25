@@ -4,7 +4,7 @@ import tensorflow as tf
 import keras.backend as K
 from tensorflow.python.ops import math_ops
 import random
-'''Helper methods for TensorFlow < 2, Keras < 2.3.0 
+'''Helper methods for TensorFlow < 2, Keras < 2.3.0
    tf.keras.optimizer optimizers
 '''
 
@@ -107,7 +107,7 @@ def _apply_lr_multiplier(cls, lr_t, var):
             print('{} init learning rate set for {} -- {}'.format(
                '%.e' % lr_t_printable, var.name, lr_t))
         else:
-            print('No change in learning rate {} -- {}'.format(var.name, 
+            print('No change in learning rate {} -- {}'.format(var.name,
                   lr_t_printable))
     return lr_t
 
@@ -137,6 +137,7 @@ def reset_seeds(reset_graph_with_backend=None, verbose=1):
         tf.set_random_seed(3)
     if verbose:
         print("RANDOM SEEDS RESET")
+
 
 def K_eval(x, backend=K):
     K = backend
