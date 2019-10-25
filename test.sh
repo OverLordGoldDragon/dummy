@@ -23,6 +23,8 @@ elif [[ "$TF_VERSION"=="2.0.0" ]] && [[ "$KERAS_VERSION"=="2.3.0" ]] && [[ "$TF_
 elif [[ "$TF_VERSION"=="2.0.0" ]] && [[ "$KERAS_VERSION"=="2.3.0" ]] && [[ "$TF_KERAS"=="True" ]] && [[ "$TF_EAGER"=="False" ]]; then
 	IGNOREFILES = ["optimizers.py", "optimizers_225.py", "optimizers_225tf.py", 
                        "optimizers_tfpy.py", "utils_225.py", "test_optimizers.py"]
+fi
+
 IGNOREFILES = IGNOREFILES + ["example.py"]
 
 nosetests \
