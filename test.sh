@@ -24,8 +24,8 @@ fi
 IGNOREFILES = IGNOREFILES + ["example.py", "optimizers_tfpy.py"]
 
 IGNORECOMMAND = ''
-for IGNOREFILE in IGNOREFILES:
-    IGNORECOMMAND = IGNORECOMMAND + ' --ignore-files=' + IGNOREFILE
+for IGNOREFILE in "$IGNOREFILES":
+    IGNORECOMMAND = "$IGNORECOMMAND" + ' --ignore-files=' + "$IGNOREFILE"
 
 nosetests \
     --nocapture --with-coverage --cover-erase --cover-html --cover-html-dir=htmlcov \
