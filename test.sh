@@ -31,7 +31,11 @@ IGNORECOMMAND=""
 for FILE in $ALLFILES
 do
     if [[ "$KEEPFILES" != *"$FILE"* ]]; then
-      IGNORECOMMAND+=" --ignore-files=${FILE}"
+		if [[ "$IGNORECOMMAND" != "" ]]; then
+			IGNORECOMMAND+=" --ignore-files=${FILE}"
+		else
+			IGNORECOMMAND+="--ignore-files=${FILE}"
+		fi
     fi
 done
 
