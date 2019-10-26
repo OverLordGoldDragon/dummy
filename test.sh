@@ -18,13 +18,13 @@ if [[ "$TF_VERSION" == "1.14.0" ]] && [[ "$KERAS_VERSION" == "2.2.5" ]]; then
         KEEPFILES="test_optimizers_v2.py optimizers_225tf.py utils_225.py"
     else
         KEEPFILES="test_optimizers.py optimizers_225.py utils_225.py"
-	fi
+    fi
 elif [[ "$TF_VERSION" == "2.0.0" ]] && [[ "$KERAS_VERSION" == "2.3.0" ]]; then
     if [[ "$TF_KERAS" == "True" ]]; then
         KEEPFILES="test_optimizers_v2.py optimizers_v2.py utils.py"
-	else
-	    KEEPFILES="test_optimizers.py optimizers.py utils.py"
-	fi
+    else
+	KEEPFILES="test_optimizers.py optimizers.py utils.py" 
+    fi
 fi
 
 IGNORECOMMAND=()
