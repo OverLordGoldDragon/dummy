@@ -7,25 +7,32 @@ else
     TESTPATH="tests/test_optimizers.py";
 fi
 
-if [[ "$TF_VERSION"=="1.14.0" ]] && [[ "$KERAS_VERSION"=="2.2.5" ]]; then
-	IGNOREFILES='["optimizers.py", "optimizers_225tf.py", "utils.py", "test_optimizers_v2.py"]';
-elif [[ "$TF_VERSION"=="1.14.0" ]] && [[ "$KERAS_VERSION"=="2.2.5" ]] && [[ "$TF_KERAS"=="True" ]]; then
-	IGNOREFILES='["optimizers.py", "optimizers_225.py", "utils.py", "test_optimizers.py"]';
-elif [[ "$TF_VERSION"=="2.0.0" ]] && [[ "$KERAS_VERSION"=="2.3.0" ]] && [[ "$TF_KERAS"=="False" ]] && [[ "TF_EAGER"=="True" ]]; then
-	IGNOREFILES='["optimizers_v2.py", "optimizers_225.py", "optimizers_225tf.py", "utils_225.py", "test_optimizers_v2.py"]';
-elif [[ "$TF_VERSION"=="2.0.0" ]] && [[ "$KERAS_VERSION"=="2.3.0" ]] && [[ "$TF_KERAS"=="False" ]] && [[ "TF_EAGER"=="False" ]]; then
-	IGNOREFILES='["optimizers_v2.py", "optimizers_225.py", "optimizers_225tf.py", "utils_225.py", "test_optimizers_v2.py"]';
-elif [[ "$TF_VERSION"=="2.0.0" ]] && [[ "$KERAS_VERSION"=="2.3.0" ]] && [[ "$TF_KERAS"=="True" ]] && [[ "$TF_EAGER"=="True" ]]; then
-	IGNOREFILES='["optimizers.py", "optimizers_225.py", "optimizers_225tf.py", "utils_225.py", "test_optimizers.py"]';
-elif [[ "$TF_VERSION"=="2.0.0" ]] && [[ "$KERAS_VERSION"=="2.3.0" ]] && [[ "$TF_KERAS"=="True" ]] && [[ "$TF_EAGER"=="False" ]]; then
-	IGNOREFILES='["optimizers.py", "optimizers_225.py", "optimizers_225tf.py", "utils_225.py", "test_optimizers.py"]';
+ALLFILES="optimizers.py optimizers_tfpy.py optimizers_v2.py"
+ALLFILES+=" optimizers_225.py optimizers_225tf.py example.py"
+ALLFILES+=" utils.py utils_225.py test_optimizers.py test_optimizers_v2.py"
+
+
+if [[ "$TF_VERSION" == "1.14.0" ]] && [[ "$KERAS_VERSION" == "2.2.5" ]]; then
+    if [[ "$TF_KERAS" == "True" ]]; then
+        KEEPFILES="test_optimizers_v2.py optimizers_225tf.py utils_225.py"
+    else
+        KEEPFILES="test_optimizers.py optimizers_225.py utils_225.py"
+	fi
+elif [[ "$TF_VERSION" == "2.0.0" ]] && [[ "$KERAS_VERSION" == "2.3.0" ]]; then
+    if [[ "$TF_KERAS" == "True" ]]; then
+        KEEPFILES="test_optimizers_v2.py optimizers_v2.py utils.py"
+	else
+	    KEEPFILES="test_optimizers.py optimizers.py utils.py"
+	fi
 fi
 
-IGNOREFILES="$IGNOREFILES"+'["example.py", "optimizers_tfpy.py"]';
-
-IGNORECOMMAND='';
-for IGNOREFILE in "$IGNOREFILES":
-    IGNORECOMMAND="$IGNORECOMMAND"+' --ignore-files=' + "$IGNOREFILE";
+IGNORECOMMAND=""
+for FILE in $ALLFILES
+do
+    if [[ "$KEEPFILES" != *"$FILE"* ]]; then
+      IGNORECOMMAND+=" --ignore-files=${FILE}"
+    fi
+done
 
 nosetests \
     --nocapture --with-coverage --cover-erase --cover-html --cover-html-dir=htmlcov \
