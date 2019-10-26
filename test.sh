@@ -36,4 +36,4 @@ done
 
 nosetests \
     --nocapture --with-coverage --cover-erase --cover-html --cover-html-dir=htmlcov \
-	"${IGNORECOMMAND[@]}" --cover-package=keras_adamw --with-doctest "$TESTPATH"
+	"${IGNORECOMMAND[@]}" --cover-package=keras_adamw# --with-doctest "$TESTPATH"
