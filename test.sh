@@ -4,7 +4,7 @@ pycodestyle --max-line-length=89 keras_adamw tests
 
 if [[ "$TF_VERSION" == "1.14.0" ]] && [[ "$KERAS_VERSION" == "2.2.5" ]]; then
     if [[ "$TF_KERAS" == "True" ]]; then
-        TESTSDIR=tests/test_optimizers_225tf
+        TESTDIR=tests/test_optimizers_225tf
     else
         TESTDIR=tests/test_optimizers_225
     fi
