@@ -7,9 +7,10 @@ else
     TESTPATH="tests/test_optimizers.py";
 fi
 
-ALLFILES="optimizers.py optimizers_tfpy.py optimizers_v2.py"
-ALLFILES+=" optimizers_225.py optimizers_225tf.py example.py"
-ALLFILES+=" utils.py utils_225.py test_optimizers.py test_optimizers_v2.py"
+ALLFILES="optimizers.py optimizers_v2.py optimizers_tfpy.py"
+ALLFILES+=" optimizers_225.py optimizers_225tf.py"
+ALLFILES+=" utils.py utils_225.py example.py"
+ALLFILES+="test_optimizers.py test_optimizers_v2.py test_optimizers_tfpy.py"
 
 
 if [[ "$TF_VERSION" == "1.14.0" ]] && [[ "$KERAS_VERSION" == "2.2.5" ]]; then
