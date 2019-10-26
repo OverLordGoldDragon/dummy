@@ -27,18 +27,18 @@ elif [[ "$TF_VERSION" == "2.0.0" ]] && [[ "$KERAS_VERSION" == "2.3.0" ]]; then
 	fi
 fi
 
-IGNORECOMMAND=''
+IGNORECOMMAND=()
 for FILE in $ALLFILES
 do
     if [[ "$KEEPFILES" != *"$FILE"* ]]; then
 		if [[ "$IGNORECOMMAND" != "" ]]; then
-			IGNORECOMMAND+=' --ignore-files="${FILE}"'
+			IGNORECOMMAND+=( --ignore-files="$FILE")
 		else
-			IGNORECOMMAND+='--ignore-files="${FILE}"'
+			IGNORECOMMAND+=(--ignore-files="$FILE")
 		fi
     fi
 done
 
 nosetests \
     --nocapture --with-coverage --cover-erase --cover-html --cover-html-dir=htmlcov \
-	"$IGNORECOMMAND" --cover-package=keras_adamw --with-doctest "$TESTPATH"
+	"${IGNORECOMMAND[@]}" --cover-package=keras_adamw --with-doctest "$TESTPATH"
