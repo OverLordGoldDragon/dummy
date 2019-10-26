@@ -7,14 +7,14 @@ from time import time
 from termcolor import cprint
 from unittest import TestCase
 
-from . import K
-from . import Input, Dense, GRU, Bidirectional, Embedding
-from . import Model
-from . import l2
-from . import maxnorm
-from . import Adam, Nadam, SGD
-from . import AdamW, NadamW, SGDW
-from . import get_weight_decays, fill_dict_in_order, reset_seeds, K_eval
+from .. import K
+from .. import Input, Dense, GRU, Bidirectional, Embedding
+from .. import Model, load_model
+from .. import l2
+from .. import maxnorm
+from .. import Adam, Nadam, SGD
+from .. import AdamW, NadamW, SGDW
+from .. import get_weight_decays, fill_dict_in_order, reset_seeds, K_eval
 
 
 print("TF version: %s" % tf.__version__)
