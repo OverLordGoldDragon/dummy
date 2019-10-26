@@ -1,0 +1,10 @@
+[run]
+parallel = True
+
+omit = 
+  keras_adamw/tests/test_optimizers_tfpy.py
+  
+[report]
+omit = 
+  keras_adamw/tests/test_optimizeres_tfpy.py
+  
