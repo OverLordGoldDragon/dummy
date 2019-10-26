@@ -21,11 +21,11 @@ elif [[ "$TF_VERSION"=="2.0.0" ]] && [[ "$KERAS_VERSION"=="2.3.0" ]] && [[ "$TF_
 	IGNOREFILES='["optimizers.py", "optimizers_225.py", "optimizers_225tf.py", "utils_225.py", "test_optimizers.py"]';
 fi
 
-IGNOREFILES = "$IGNOREFILES" + '["example.py", "optimizers_tfpy.py"]';
+IGNOREFILES="$IGNOREFILES"+'["example.py", "optimizers_tfpy.py"]';
 
-IGNORECOMMAND = '';
+IGNORECOMMAND='';
 for IGNOREFILE in "$IGNOREFILES":
-    IGNORECOMMAND = "$IGNORECOMMAND" + ' --ignore-files=' + "$IGNOREFILE";
+    IGNORECOMMAND="$IGNORECOMMAND"+' --ignore-files=' + "$IGNOREFILE";
 
 nosetests \
     --nocapture --with-coverage --cover-erase --cover-html --cover-html-dir=htmlcov \
