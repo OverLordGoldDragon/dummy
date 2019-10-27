@@ -1,11 +1,10 @@
-from termcolor import colored
-import numpy as np
 import tensorflow as tf
 import keras.backend as K
-from tensorflow.python.ops import math_ops
+import numpy as np
 import random
-'''Helper methods for TensorFlow < 2, Keras < 2.3.0
-   tf.keras.optimizer optimizers
+from termcolor import colored
+from tensorflow.python.ops import math_ops
+'''Helper methods for optimizers_225tf.py optimizers
 '''
 
 

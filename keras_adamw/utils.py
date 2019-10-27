@@ -1,8 +1,8 @@
-import keras.backend as K
-from termcolor import colored
-import numpy as np
 import tensorflow as tf
+import keras.backend as K
+import numpy as np
 import random
+from termcolor import colored
 '''Helper methods for optimizers
 '''
 
