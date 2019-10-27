@@ -43,8 +43,8 @@ else:
     from keras.optimizers import Adam, Nadam, SGD
 
 if tf_version < 2 and tf_keras:
-    from keras_adamw.utils_225 import get_weight_decays, fill_dict_in_order
-    from keras_adamw.utils_225 import reset_seeds, K_eval
+    from keras_adamw.utils_225tf import get_weight_decays, fill_dict_in_order
+    from keras_adamw.utils_225tf import reset_seeds, K_eval
 else:
     from keras_adamw.utils import get_weight_decays, fill_dict_in_order
     from keras_adamw.utils import reset_seeds, K_eval
